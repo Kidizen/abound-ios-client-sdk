@@ -14,7 +14,7 @@ public class AboundThemeText{
     var size: String
     var weight: String
     
-    init(componentLabelSize: String = "14px",
+    public init(componentLabelSize: String = "14px",
          componentSize: String = "14px",
          fontFamily: String = "Arial",
          size: String = "12px",

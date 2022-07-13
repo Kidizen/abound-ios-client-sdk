@@ -15,7 +15,7 @@ public struct TaxDocument: View {
     var theme: AboundTheme
     var year: String
     
-    init(theme: AboundTheme = AboundTheme(), year: String) {
+    public init(theme: AboundTheme = AboundTheme(), year: String) {
         self.theme = theme
         self.year = year
     }

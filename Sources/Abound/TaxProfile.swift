@@ -11,7 +11,7 @@ import SwiftUI
 public struct TaxProfile: View {
     var theme: AboundTheme
     
-    init(theme: AboundTheme = AboundTheme()) {
+    public init(theme: AboundTheme = AboundTheme()) {
         self.theme = theme
     }
     

@@ -25,7 +25,7 @@ public class AboundThemeButton{
 
 
     
-    init(colorActiveBackground: String =  "#000000",
+    public init(colorActiveBackground: String =  "#000000",
          colorActiveBorder: String = "#000000",
          colorActiveText: String = "#FFFFFF",
          colorDisabledBackground: String = "#C5C5C5",

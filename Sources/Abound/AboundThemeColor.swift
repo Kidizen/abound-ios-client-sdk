@@ -17,7 +17,7 @@ public class AboundThemeColor{
     var primary: String
     var text: String
 
-    init(background: String =  "#FFFFFF",
+    public init(background: String =  "#FFFFFF",
          componentBackground: String = "#FFFFFF",
          componentBorder: String = "#C5C5C5",
          componentPlaceholderText: String = "#C5C5C5",
