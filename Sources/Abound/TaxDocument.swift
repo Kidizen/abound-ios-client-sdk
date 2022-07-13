@@ -21,7 +21,7 @@ public struct TaxDocument: View {
     }
     
     @available(iOS 13.0.0, *)
-    var body: some View {
+    public var body: some View {
         WebView(currentType: DocumentType.taxDocument, accessToken: Abound.accessToken,theme:theme, year:year)
     }
 }
