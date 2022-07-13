@@ -1,0 +1,39 @@
+//
+//  AboundThemeButton.swift
+//  Abound
+//
+//  Created by Hansy Schmitt on 7/5/22.
+//
+
+import Foundation
+import SwiftUI
+
+class AboundTheme{
+    var text: AboundThemeText
+    var color: AboundThemeColor
+    var shape: AboundThemeShape
+    var button: AboundThemeButton
+    init(
+        text:AboundThemeText=AboundThemeText() ,
+        color:AboundThemeColor=AboundThemeColor() ,
+        shape:AboundThemeShape=AboundThemeShape() ,
+        button:AboundThemeButton=AboundThemeButton()
+    ){
+        self.text = text
+        self.color = color
+        self.shape = shape
+        self.button = button
+    }
+    
+    func toHtml() -> String{
+        return String(format:"""
+        const customTheme = {
+            %@,
+            %@,
+            %@,
+            %@,
+        };
+        """, arguments: [text.toHtml(), color.toHtml(), shape.toHtml(), button.toHtml()])
+    }
+  
+}
