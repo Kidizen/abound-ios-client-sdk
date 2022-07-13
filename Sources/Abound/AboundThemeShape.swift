@@ -7,7 +7,7 @@
 
 import Foundation
 
-class AboundThemeShape{
+public class AboundThemeShape{
     var componentBorderWidth: String
     var componentCornerRadius: String
     

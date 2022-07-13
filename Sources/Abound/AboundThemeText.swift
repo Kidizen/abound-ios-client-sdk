@@ -7,7 +7,7 @@
 
 import Foundation
 
-class AboundThemeText{
+public class AboundThemeText{
     var componentLabelSize: String
     var componentSize: String
     var fontFamily: String

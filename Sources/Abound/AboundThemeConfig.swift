@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-class AboundThemeConfig{
+public class AboundThemeConfig{
     var text: AboundThemeText
     var color: AboundThemeColor
     var shape: AboundThemeShape

@@ -7,7 +7,7 @@
 
 import Foundation
 
-class AboundThemeButton{
+public class AboundThemeButton{
     var colorActiveBackground: String
     var colorActiveBorder: String
     var colorActiveText: String

@@ -10,7 +10,7 @@ import SwiftUI
 
 
 @available(iOS 13.0.0, *)
-struct TaxDocument: View {
+public struct TaxDocument: View {
   
     var theme: AboundTheme
     var year: String

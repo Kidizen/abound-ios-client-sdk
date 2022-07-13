@@ -8,7 +8,7 @@
 import SwiftUI
 
 @available(iOS 13.0.0, *)
-struct TaxProfile: View {
+public struct TaxProfile: View {
     var theme: AboundTheme
     
     init(theme: AboundTheme = AboundTheme()) {
