@@ -1,5 +1,5 @@
 public struct Abound {
-    static var accessToken: String = ""
+    public static var accessToken: String = ""
 
     public init() {
     }

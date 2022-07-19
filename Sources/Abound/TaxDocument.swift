@@ -10,18 +10,18 @@ import SwiftUI
 
 
 @available(iOS 13.0.0, *)
-struct TaxDocument: View {
+public struct TaxDocument: View {
   
     var theme: AboundTheme
     var year: String
     
-    init(theme: AboundTheme = AboundTheme(), year: String) {
+    public init(theme: AboundTheme = AboundTheme(), year: String) {
         self.theme = theme
         self.year = year
     }
     
     @available(iOS 13.0.0, *)
-    var body: some View {
+    public var body: some View {
         WebView(currentType: DocumentType.taxDocument, accessToken: Abound.accessToken,theme:theme, year:year)
     }
 }

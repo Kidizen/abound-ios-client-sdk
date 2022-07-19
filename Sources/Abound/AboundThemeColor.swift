@@ -7,7 +7,7 @@
 
 import Foundation
 
-class AboundThemeColor{
+public class AboundThemeColor{
     var background: String
     var componentBackground: String
     var componentBorder: String
@@ -17,7 +17,7 @@ class AboundThemeColor{
     var primary: String
     var text: String
 
-    init(background: String =  "#FFFFFF",
+    public init(background: String =  "#FFFFFF",
          componentBackground: String = "#FFFFFF",
          componentBorder: String = "#C5C5C5",
          componentPlaceholderText: String = "#C5C5C5",

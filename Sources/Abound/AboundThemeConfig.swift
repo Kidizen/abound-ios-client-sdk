@@ -8,12 +8,12 @@
 import Foundation
 import SwiftUI
 
-class AboundThemeConfig{
+public class AboundThemeConfig{
     var text: AboundThemeText
     var color: AboundThemeColor
     var shape: AboundThemeShape
     var button: AboundThemeButton
-    init(
+    public init(
         text:AboundThemeText=AboundThemeText() ,
         color:AboundThemeColor=AboundThemeColor() ,
         shape:AboundThemeShape=AboundThemeShape() ,
