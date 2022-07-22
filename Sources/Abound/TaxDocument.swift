@@ -2,7 +2,7 @@
 //  AboundThemeButton.swift
 //  Abound
 //
-//  Created by Hansy Schmitt on 7/4/22.
+//  Created by Abound on 7/4/22.
 //
 
 import SwiftUI
