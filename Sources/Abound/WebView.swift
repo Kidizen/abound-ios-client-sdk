@@ -2,7 +2,7 @@
 //  AboundThemeButton.swift
 //  Abound
 //
-//  Created by Hansy Schmitt on 7/4/22.
+//  Created by Abound on 7/4/22.
 //
 
 import SwiftUI
@@ -14,6 +14,8 @@ struct WebView: UIViewRepresentable {
     var accessToken: String
     var theme: AboundTheme
     var year: String
+    var onSuccess: (() -> Void)? = nil
+    var onError: (() -> Void)? = nil
     
     func makeUIView(context: Context) -> WKWebView {
         return WKWebView()

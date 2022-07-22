@@ -2,7 +2,7 @@
 //  AboundThemeButton.swift
 //  Abound
 //
-//  Created by Hansy Schmitt on 7/5/22.
+//  Created by Abound on 7/5/22.
 //
 
 import Foundation
