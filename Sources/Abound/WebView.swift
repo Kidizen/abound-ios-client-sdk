@@ -14,6 +14,8 @@ struct WebView: UIViewRepresentable {
     var accessToken: String
     var theme: AboundTheme
     var year: String
+    var onSuccess: (() -> Void)? = nil
+    var onError: (() -> Void)? = nil
     
     func makeUIView(context: Context) -> WKWebView {
         return WKWebView()
