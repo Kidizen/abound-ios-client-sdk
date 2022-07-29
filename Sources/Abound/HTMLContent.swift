@@ -7,6 +7,7 @@
 
 
 var taxProfileHTML = """
+
 <html>
     <body>
         <div id="abound-ui-wrapper"></div>
@@ -23,6 +24,8 @@ var taxProfileHTML = """
             });
             
             %@
+
+            %@
             function onSuccess(){
             }
             function onError(){
@@ -32,10 +35,12 @@ var taxProfileHTML = """
                 theme: customTheme,
                 onSubmitError: onError,
                 onSubmitSuccess: onSuccess,
+                content: customContent,
             });
         </script>
     </body>
 </html>
+
 """
 
 
@@ -56,7 +61,8 @@ var taxDocumentHTML = """
             });
 
             %@
-        
+            
+            %@
             function onSuccess(){
             }
             function onError(){

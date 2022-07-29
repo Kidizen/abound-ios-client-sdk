@@ -13,6 +13,7 @@ struct WebView: UIViewRepresentable {
     var currentType: DocumentType
     var accessToken: String
     var theme: AboundTheme
+    var customContent: AboundCustomTextContent
     var year: String
     var onSuccess: (() -> Void)? = nil
     var onError: (() -> Void)? = nil
@@ -23,9 +24,9 @@ struct WebView: UIViewRepresentable {
     
     func getHTML() -> String{
         if currentType == DocumentType.taxDocument{
-            return String(format: taxDocumentHTML, arguments: [accessToken,theme.toHtml(),year])
+            return String(format: taxDocumentHTML, arguments: [accessToken,theme.toHtml(),customContent.toHtml(),year])
         }else{
-            return String(format: taxProfileHTML, arguments: [accessToken,theme.toHtml(),year])
+            return String(format: taxProfileHTML, arguments: [accessToken,theme.toHtml(),customContent.toHtml(),year])
         }
     }
     

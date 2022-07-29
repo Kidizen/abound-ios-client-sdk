@@ -29,6 +29,10 @@ class Utils{
         let validatedValue = value.lowercased().matches(regex) ? value: defaultValue
         return validatedValue
     }
+    
+    static func toText(value:String?, defaultValue:String) -> String{
+        return value ?? defaultValue
+    }
 }
 
 
