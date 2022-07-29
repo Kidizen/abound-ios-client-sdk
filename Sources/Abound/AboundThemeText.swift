@@ -1,5 +1,5 @@
 //
-//  AboundThemeButton.swift
+//  AboundThemeText.swift
 //  Abound
 //
 //  Created by Abound on 7/6/22.
