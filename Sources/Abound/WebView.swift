@@ -16,16 +16,17 @@ struct WebView: UIViewRepresentable{
     var customContent: AboundCustomTextContent
     var year: String
     var onSuccess: (() -> Void)? = nil
-    var onError: (() -> Void)? = nil
+    var onError: ((TaxError) -> Void)? = nil
     
   
     func makeUIView(context: Context) -> WKWebView {
-        let onSuccessHandler = WebViewOnSuccess(onSuccess: self.onSuccess)
+        let onCallbackHandler = WebViewCallbacks(onSuccess: self.onSuccess, onError: self.onError)
         let controller = WKUserContentController()
-        controller.add(onSuccessHandler , name: "onSuccess")
+        controller.add(onCallbackHandler , name: "onSuccess")
+        controller.add(onCallbackHandler , name: "onError")
         let config = WKWebViewConfiguration()
-        config.userContentController = controller
-        return WKWebView(frame: .zero, configuration: config)
+        config.userContentController = controller     
+        return  WKWebView(frame: .zero, configuration: config)
     }
     
     func getHTML() -> String{

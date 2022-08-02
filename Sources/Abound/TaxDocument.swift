@@ -15,17 +15,18 @@ public struct TaxDocument: View {
     var theme: AboundTheme
     var year: String
     var onSuccess: (() -> Void)? = nil
-    var onError: (() -> Void)? = nil
+    var onError: ((TaxError) -> Void)? = nil
     
     public init(
         theme: AboundTheme = AboundTheme(),
         year: String,
         onSuccess: (() -> Void)? = nil,
-        onError: (() -> Void)? = nil
+        onError: ((TaxError) -> Void)? = nil
     ) {
         self.theme = theme
         self.year = year
         self.onSuccess = onSuccess
+        self.onError = onError
     }
     
     @available(iOS 13.0.0, *)
