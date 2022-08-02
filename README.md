@@ -43,6 +43,23 @@ Then we can show the [Tax Profile](https://docs.withabound.com/docs/adding-a-tax
 TaxProfile()
 ```
 
+we can also add Custom Text Content for Tax Profile , for specific states.
+Currently you can set the values for 
+
+submitButton (Defaults to 'Submit')
+loadingButton (Defaults to 'Loading...')
+loadingPrompt (Defaults to 'This should take less than 10 seconds.')
+errorMessage (Defaults to 'Invalid')
+
+```swift
+    AboundCustomTextContent(
+        submitButton:"Submit Button",
+        loadingButton:"Loading Button",
+        loadingPrompt: "Loading Prompt...",
+        errorMessage: "Someething went wrong"
+    );
+```
+
 or a [Tax  Document](https://docs.withabound.com/docs/adding-a-tax-documents-drop-in-to-your-app)
 
 ```swift

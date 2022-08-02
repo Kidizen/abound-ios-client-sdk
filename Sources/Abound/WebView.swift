@@ -8,24 +8,32 @@
 import SwiftUI
 import WebKit
 
-struct WebView: UIViewRepresentable {
+struct WebView: UIViewRepresentable{
 
     var currentType: DocumentType
     var accessToken: String
     var theme: AboundTheme
+    var customContent: AboundCustomTextContent
     var year: String
     var onSuccess: (() -> Void)? = nil
-    var onError: (() -> Void)? = nil
+    var onError: ((TaxError) -> Void)? = nil
     
+  
     func makeUIView(context: Context) -> WKWebView {
-        return WKWebView()
+        let onCallbackHandler = WebViewCallbacks(onSuccess: self.onSuccess, onError: self.onError)
+        let controller = WKUserContentController()
+        controller.add(onCallbackHandler , name: "onSuccess")
+        controller.add(onCallbackHandler , name: "onError")
+        let config = WKWebViewConfiguration()
+        config.userContentController = controller     
+        return  WKWebView(frame: .zero, configuration: config)
     }
     
     func getHTML() -> String{
         if currentType == DocumentType.taxDocument{
-            return String(format: taxDocumentHTML, arguments: [accessToken,theme.toHtml(),year])
+            return String(format: taxDocumentHTML, arguments: [accessToken,theme.toHtml(),customContent.toHtml(),year])
         }else{
-            return String(format: taxProfileHTML, arguments: [accessToken,theme.toHtml(),year])
+            return String(format: taxProfileHTML, arguments: [accessToken,theme.toHtml(),customContent.toHtml(),year])
         }
     }
     
@@ -33,4 +41,10 @@ struct WebView: UIViewRepresentable {
         let domain = URL(string: "https://api.withabound.com")!
         webView.loadHTMLString(getHTML(), baseURL: domain)
     }
+    
+    func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
+            print("Message received: \(message.name) with body: \(message.body)")
+    }
+  
 }
+
