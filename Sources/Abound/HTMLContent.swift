@@ -7,7 +7,6 @@
 
 
 var taxProfileHTML = """
-
 <html>
     <body>
         <div id="abound-ui-wrapper"></div>
@@ -18,29 +17,33 @@ var taxProfileHTML = """
         </style>
         <script type="module">
             import Abound from "https://js.withabound.com/latest/abound-client-sdk.js";
-
+            // Access Token
             const abound = new Abound({
                 accessToken: "%@",
             });
+            // Theme
+            %@
+            // Custom Content
+            %@
             
-            %@
-
-            %@
             function onSuccess(){
+               
+                    window.webkit.messageHandlers.onSuccess.postMessage("");
+                
             }
             function onError(){
+                alert("OnError");
             }
+            //Year
             abound.renderTaxProfile({
                 targetId: "abound-ui-wrapper",
                 theme: customTheme,
-                onSubmitError: onError,
-                onSubmitSuccess: onSuccess,
+                onSuccess: onSuccess,
                 content: customContent,
             });
         </script>
     </body>
 </html>
-
 """
 
 
@@ -55,24 +58,27 @@ var taxDocumentHTML = """
         <div id="abound-ui-wrapper"></div>
         <script type="module">
             import Abound from "https://js.withabound.com/latest/abound-client-sdk.js";
-            
+            // Access Token
             const abound = new Abound({
                 accessToken: "%@",
             });
-
+            // Theme
             %@
-            
+            // Custom Content
             %@
             function onSuccess(){
+                alert("OnSuccess");
             }
             function onError(){
+                alert("OnError");
             }
+            //Year
             abound.renderTaxDocuments({
                year: "%@",
                targetId: "abound-ui-wrapper",
                theme: customTheme,
                onSubmitError: onError,
-               onSubmitSuccess: onSuccess,
+               onSuccess: onSuccess,
             });
         </script>
     </body>

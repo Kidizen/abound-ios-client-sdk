@@ -33,13 +33,15 @@ public struct TaxProfile: View {
             theme: theme,
             customContent: customContent,
             year: "2022",
-            onSuccess: onSuccess,
-            onError: onError
+            onSuccess: self.onSuccess,
+            onError: self.onError
         )
     }
 }
 
 struct TaxProfilePreview: View {
+    @State private var showText = false
+
     private var yourBrandsCustomTextContent = AboundCustomTextContent(
         submitButton:"Submit Button",
         loadingButton:"Loading Button",
@@ -53,6 +55,9 @@ struct TaxProfilePreview: View {
            shape:AboundThemeShape(componentCornerRadius: "16px"),
            button: AboundThemeButton(colorActiveBackground: "#655BEF")
     );
+    private func onSuccess(){
+        self.showText.toggle()
+    }
     
     public init(){
         Abound.accessToken = "accessToken_testeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcHBfaWQiOiJhcHBJZF90ZXN0NDhlN2VhYTMxNzVhNjYzNTRlMDA2MjY1NDJkMiIsImNyZWF0ZWRfdGltZXN0YW1wIjoxNjU1MDk2NDAwMDAwLCJlbnZpcm9ubWVudCI6Imh0dHBzOi8vc2FuZGJveC1hcGkud2l0aGFib3VuZC5jb20vdjIiLCJleHBpcmF0aW9uX3RpbWVzdGFtcCI6MzI1MDM3MDE2MDAwMDAsInN0YXR1cyI6IkFjdGl2ZSIsInVzZXJfaWQiOiJ1c2VySWRfdGVzdDI0YjA1ZDc2MWZmNThiNTkzMWJkMDc3NzhjNjdiNGU4MThlNCIsImlhdCI6MTY1NTEzMDMxM30.dOUIyxTRV0QDmrFiy-GoyhKc8qru3pymIcPS5cGTaNk"
@@ -62,10 +67,19 @@ struct TaxProfilePreview: View {
     
        var body: some View {
            VStack {
+               Button("Toggle"){
+                   onSuccess()
+               }
                Text("Tax Profile")
+               if(showText){
+                   Text("Success")
+               }else{
+                   Text("Processing...")
+               }
                TaxProfile(
                 theme: self.yourBrandsTheme,
-                customContent: self.yourBrandsCustomTextContent
+                customContent: self.yourBrandsCustomTextContent,
+                onSuccess: self.onSuccess
                )
            }
        }

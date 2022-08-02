@@ -8,7 +8,7 @@
 import SwiftUI
 import WebKit
 
-struct WebView: UIViewRepresentable {
+struct WebView: UIViewRepresentable{
 
     var currentType: DocumentType
     var accessToken: String
@@ -18,8 +18,14 @@ struct WebView: UIViewRepresentable {
     var onSuccess: (() -> Void)? = nil
     var onError: (() -> Void)? = nil
     
+  
     func makeUIView(context: Context) -> WKWebView {
-        return WKWebView()
+        let onSuccessHandler = WebViewOnSuccess(onSuccess: self.onSuccess)
+        let controller = WKUserContentController()
+        controller.add(onSuccessHandler , name: "onSuccess")
+        let config = WKWebViewConfiguration()
+        config.userContentController = controller
+        return WKWebView(frame: .zero, configuration: config)
     }
     
     func getHTML() -> String{
@@ -34,4 +40,10 @@ struct WebView: UIViewRepresentable {
         let domain = URL(string: "https://api.withabound.com")!
         webView.loadHTMLString(getHTML(), baseURL: domain)
     }
+    
+    func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
+            print("Message received: \(message.name) with body: \(message.body)")
+    }
+  
 }
+
