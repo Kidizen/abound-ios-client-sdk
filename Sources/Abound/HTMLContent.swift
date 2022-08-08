@@ -8,11 +8,17 @@
 
 var taxProfileHTML = """
 <html>
+  <head>
+    <meta name="viewport" content="width=device-width, user-scalable=yes" />
+  </head>
   <body>
     <div id="abound-ui-wrapper"></div>
     <style>
       .abound-tax-profile {
         width: auto;
+      }
+      input, select{
+        height:  inherit !important;
       }
     </style>
     <script>
@@ -48,10 +54,16 @@ var taxProfileHTML = """
 
 var taxDocumentHTML = """
 <html>
+  <head>
+    <meta name="viewport" content="width=device-width, user-scalable=yes" />
+  </head>
     <body>
         <style>
             .abound-tax-documents {
                 width: auto;
+            }
+            input, select{
+                height:  inherit !important;
             }
         </style>
         <div id="abound-ui-wrapper"></div>
