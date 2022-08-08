@@ -15,10 +15,10 @@ public class AboundCustomTextContent{
     var errorMessage: String
     
     public init(
-        submitButton: String = "" ,
-        loadingButton: String = "" ,
-        loadingPrompt: String = "" ,
-        errorMessage: String = ""
+        submitButton: String = "Submit" ,
+        loadingButton: String = "Loading" ,
+        loadingPrompt: String = "This should take less than 10 seconds." ,
+        errorMessage: String = "Invalid"
     ){
         self.submitButton = Utils.toText(value: submitButton, defaultValue: "Submit")
         self.loadingButton = Utils.toText(value: loadingButton, defaultValue: "Loading...")
