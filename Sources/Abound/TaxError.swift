@@ -8,5 +8,5 @@
 import Foundation
 
 public struct TaxError{
-    var error: String
+    public var error: String
 }
