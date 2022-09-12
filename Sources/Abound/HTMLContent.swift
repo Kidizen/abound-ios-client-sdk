@@ -31,6 +31,8 @@ var taxProfileHTML = """
     </script>
     <script type="module">
       import Abound from "https://js.withabound.com/latest/abound-client-sdk.js";
+      // debug mode
+      %@
       // Access Token
       const abound = new Abound({
         accessToken: "%@",
@@ -39,10 +41,37 @@ var taxProfileHTML = """
       %@
       // Custom Content
       %@
+      function onSuccessOrError (){
+                      if(debugMode){
+                          const eins = document.getElementsByName("ein")
+                          if(eins.length>0){
+                              const ein = eins[0].value.replace("-","");
+                              switch(ein){
+                                  case "999999999":
+                                      onError("unverified");
+                                  break;
+                                  case "333333333":
+                                      onError("mismatch");
+                                  break;
+                                  case "111111111":
+                                      onError("error");
+                                  break;
+                                  case "555555555":
+                                      onError("lockedOut");
+                                  break;
+                                  default:
+                                      onSuccess();
+                              }
+                          }
+                      }else{
+                          onSuccess();
+                      }
+                    
+                  }
       abound.renderTaxProfile({
         targetId: "abound-ui-wrapper",
         theme: customTheme,
-        onSubmitSuccess: onSuccess,
+        onSubmitSuccess: onSuccessOrError,
         onSubmitError: onError,
         content: customContent,
       });
@@ -77,6 +106,8 @@ var taxDocumentHTML = """
     </script>
         <script type="module">
             import Abound from "https://js.withabound.com/latest/abound-client-sdk.js";
+            // debug mode
+            %@
             // Access Token
             const abound = new Abound({
                 accessToken: "%@",
