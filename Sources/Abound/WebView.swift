@@ -17,7 +17,7 @@ struct WebView: UIViewRepresentable{
     var year: String
     var onSuccess: (() -> Void)? = nil
     var onError: ((TaxError) -> Void)? = nil
-    
+    var debug: Bool
   
     func makeUIView(context: Context) -> WKWebView {
         let onCallbackHandler = WebViewCallbacks(onSuccess: self.onSuccess, onError: self.onError)
@@ -30,10 +30,12 @@ struct WebView: UIViewRepresentable{
     }
     
     func getHTML() -> String{
+        let debugMode = debug ?  "const debugMode  = true": "const debugMode  = false"
+        
         if currentType == DocumentType.taxDocument{
-            return String(format: taxDocumentHTML, arguments: [accessToken,theme.toHtml(),customContent.toHtml(),year])
+            return String(format: taxDocumentHTML, arguments: [debugMode,accessToken,theme.toHtml(),customContent.toHtml(),year])
         }else{
-            return String(format: taxProfileHTML, arguments: [accessToken,theme.toHtml(),customContent.toHtml(),year])
+            return String(format: taxProfileHTML, arguments: [debugMode,accessToken,theme.toHtml(),customContent.toHtml(),year])
         }
     }
     

@@ -62,6 +62,19 @@ errorMessage (Defaults to 'Invalid')
 
 or a [Tax  Document](https://docs.withabound.com/docs/adding-a-tax-documents-drop-in-to-your-app)
 
+### Debug Mode
+
+You can pass a parameter called debug, that allows to test specific states when passing an EIN/TIN value
+
+| Status     | Description                                                       | Testing Value |
+|------------|-------------------------------------------------------------------|---------------|
+| unverified | Unverified                                                        | 999999999     |
+| mismatch   | TIN and name do not match.                                        | 333333333     |
+| error      | This is a system-failure error and should rarely, if ever, occur. | 111111111     |
+| lockedOut  | Verification for user locked for 24-hours.                        | 555555555     |
+
+        
+
 ```swift
 TaxDocuments(year: '2022')
 ```
