@@ -26,7 +26,7 @@ var taxProfileHTML = """
         window.webkit.messageHandlers.onSuccess.postMessage("");
       }
       function onError(error) {
-        window.webkit.messageHandlers.onError.postMessage(error);
+        window.webkit.messageHandlers.onError.postMessage(error.toString());
       }
     </script>
     <script type="module">
