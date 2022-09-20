@@ -9,24 +9,61 @@ import SwiftUI
 import WebKit
 
 struct WebView: UIViewRepresentable{
+    typealias OnSuccessCallback = () -> Void
+    typealias OnErrorCallback = (TaxError) -> Void
 
-    var currentType: DocumentType
-    var accessToken: String
-    var theme: AboundTheme
-    var customContent: AboundCustomTextContent
-    var year: String
-    var onSuccess: (() -> Void)? = nil
-    var onError: ((TaxError) -> Void)? = nil
-    var debug: Bool
+    let currentType: DocumentType
+    let accessToken: String
+    let theme: AboundTheme
+    let customContent: AboundCustomTextContent
+    let year: String
+    let onSuccess: OnSuccessCallback?
+    let onError: OnErrorCallback?
+    let debug: Bool
+    
+    init(
+        currentType: DocumentType,
+        accessToken: String,
+        theme: AboundTheme,
+        customContent: AboundCustomTextContent,
+        year: String,
+        onSuccess: OnSuccessCallback? = nil,
+        onError: OnErrorCallback? = nil,
+        debug: Bool
+    ) {
+        self.currentType = currentType
+        self.accessToken = accessToken
+        self.theme = theme
+        self.customContent = customContent
+        self.year = year
+        self.onSuccess = onSuccess
+        self.onError = onError
+        self.debug = debug
+    }
   
     func makeUIView(context: Context) -> WKWebView {
+        let config = createWebViewConfig()
+        let webView = WKWebView(frame: .zero, configuration: config)
+        
+        let domain = URL(string: "https://api.withabound.com")!
+        webView.loadHTMLString(getHTML(), baseURL: domain)
+        
+        return webView
+    }
+    
+    func updateUIView(_ webView: WKWebView, context: Context) {}
+    
+    private func createWebViewConfig() -> WKWebViewConfiguration {
         let onCallbackHandler = WebViewCallbacks(onSuccess: self.onSuccess, onError: self.onError)
+        
         let controller = WKUserContentController()
         controller.add(onCallbackHandler , name: "onSuccess")
         controller.add(onCallbackHandler , name: "onError")
+        
         let config = WKWebViewConfiguration()
-        config.userContentController = controller     
-        return  WKWebView(frame: .zero, configuration: config)
+        config.userContentController = controller
+        
+        return config
     }
     
     func getHTML() -> String{
@@ -37,11 +74,6 @@ struct WebView: UIViewRepresentable{
         }else{
             return String(format: taxProfileHTML, arguments: [debugMode,accessToken,theme.toHtml(),customContent.toHtml(),year])
         }
-    }
-    
-    func updateUIView(_ webView: WKWebView, context: Context) {
-        let domain = URL(string: "https://api.withabound.com")!
-        webView.loadHTMLString(getHTML(), baseURL: domain)
     }
     
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
