@@ -8,7 +8,7 @@
 import SwiftUI
 import WebKit
 
-struct WebView: UIViewRepresentable{
+struct WebView: UIViewRepresentable {
     typealias OnSuccessCallback = () -> Void
     typealias OnErrorCallback = (TaxError) -> Void
 
@@ -20,6 +20,26 @@ struct WebView: UIViewRepresentable{
     let onSuccess: OnSuccessCallback?
     let onError: OnErrorCallback?
     let debug: Bool
+    
+    class Coordinator: NSObject, WKUIDelegate {
+        var parent: WebView
+        
+        init(_ parent: WebView) {
+            self.parent = parent
+        }
+        
+        func webView(
+            _ webView: WKWebView,
+            createWebViewWith configuration: WKWebViewConfiguration,
+            for navigationAction: WKNavigationAction,
+            windowFeatures: WKWindowFeatures
+        ) -> WKWebView? {
+            guard let url = navigationAction.request.url else { return nil }
+            
+            UIApplication.shared.open(url)
+            return nil
+        }
+    }
     
     init(
         currentType: DocumentType,
@@ -40,18 +60,22 @@ struct WebView: UIViewRepresentable{
         self.onError = onError
         self.debug = debug
     }
+    
+    func makeCoordinator() -> Coordinator {
+        Coordinator(self)
+    }
   
     func makeUIView(context: Context) -> WKWebView {
         let config = createWebViewConfig()
-        let webView = WKWebView(frame: .zero, configuration: config)
+        return WKWebView(frame: .zero, configuration: config)
+    }
+    
+    func updateUIView(_ webView: WKWebView, context: Context) {
+        webView.uiDelegate = context.coordinator
         
         let domain = URL(string: "https://api.withabound.com")!
         webView.loadHTMLString(getHTML(), baseURL: domain)
-        
-        return webView
     }
-    
-    func updateUIView(_ webView: WKWebView, context: Context) {}
     
     private func createWebViewConfig() -> WKWebViewConfiguration {
         let onCallbackHandler = WebViewCallbacks(onSuccess: self.onSuccess, onError: self.onError)
@@ -66,7 +90,7 @@ struct WebView: UIViewRepresentable{
         return config
     }
     
-    func getHTML() -> String{
+    private func getHTML() -> String{
         let debugMode = debug ?  "const debugMode  = true": "const debugMode  = false"
         
         if currentType == DocumentType.taxDocument{
@@ -81,4 +105,3 @@ struct WebView: UIViewRepresentable{
     }
   
 }
-
