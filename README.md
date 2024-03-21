@@ -44,7 +44,7 @@ Then we can show the [Tax Profile](https://docs.withabound.com/docs/tax-profile-
 TaxProfile()
 ```
 
-we can also add Custom Text Content for Tax Profile, for specific states.
+We can also add Custom Text Content for Tax Profile, for specific states.
 Currently you can set the values for
 
 submitButton (Defaults to 'Submit')

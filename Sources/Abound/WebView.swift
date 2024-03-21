@@ -71,7 +71,7 @@ struct WebView: UIViewRepresentable{
         if currentType == DocumentType.taxDocument{
             return String(format: taxDocumentHTML, arguments: [theme.toHtml(),customContent.toHtml(),accessToken,year])
         }else{
-            return String(format: taxProfileHTML, arguments: [theme.toHtml(),customContent.toHtml(),accessToken, year])
+            return String(format: taxProfileHTML, arguments: [theme.toHtml(),customContent.toHtml(),accessToken])
         }
     }
     
