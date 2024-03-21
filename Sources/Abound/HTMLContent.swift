@@ -102,7 +102,7 @@ var taxDocumentHTML = """
       }
     </script>
         <script type="module">
-            import { renderTaxDocuments }from "https://js.withabound.com/latest-v2-minor/abound-client-sdk.js";
+            import { renderTaxDocuments } from "https://js.withabound.com/latest-v2-minor/abound-client-sdk.js";
             // debug mode
             %@
             // Theme
