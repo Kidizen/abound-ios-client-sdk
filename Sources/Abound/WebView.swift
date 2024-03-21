@@ -70,9 +70,9 @@ struct WebView: UIViewRepresentable{
         let debugMode = debug ?  "const debugMode  = true": "const debugMode  = false"
         
         if currentType == DocumentType.taxDocument{
-            return String(format: taxDocumentHTML, arguments: [debugMode,accessToken,theme.toHtml(),customContent.toHtml(),year])
+            return String(format: taxDocumentHTML, arguments: [debugMode,theme.toHtml(),customContent.toHtml(),accessToken,year])
         }else{
-            return String(format: taxProfileHTML, arguments: [debugMode,accessToken,theme.toHtml(),customContent.toHtml(),year])
+            return String(format: taxProfileHTML, arguments: [debugMode,theme.toHtml(),customContent.toHtml(),accessToken, year])
         }
     }
     

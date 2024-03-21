@@ -30,13 +30,9 @@ var taxProfileHTML = """
       }
     </script>
     <script type="module">
-      import Abound from "https://js.withabound.com/latest/abound-client-sdk.js";
+      import { renderW9Collection } from "https://js.withabound.com/latest-v2-minor/abound-client-sdk.js";
       // debug mode
       %@
-      // Access Token
-      const abound = new Abound({
-        accessToken: "%@",
-      });
       // Theme
       %@
       // Custom Content
@@ -68,7 +64,8 @@ var taxProfileHTML = """
                       }
                     
                   }
-      abound.renderTaxProfile({
+      renderW9Collection({
+        accessToken: "%@",
         targetId: "abound-ui-wrapper",
         theme: customTheme,
         onSubmitSuccess: onSuccessOrError,
@@ -105,19 +102,16 @@ var taxDocumentHTML = """
       }
     </script>
         <script type="module">
-            import Abound from "https://js.withabound.com/latest/abound-client-sdk.js";
+            import { renderTaxDocuments }from "https://js.withabound.com/latest-v2-minor/abound-client-sdk.js";
             // debug mode
             %@
-            // Access Token
-            const abound = new Abound({
-                accessToken: "%@",
-            });
             // Theme
             %@
             // Custom Content
             %@
             //Year
-            abound.renderTaxDocuments({
+            renderTaxDocuments({
+               accessToken: "%@",
                year: "%@",
                targetId: "abound-ui-wrapper",
                theme: customTheme,
