@@ -56,7 +56,7 @@ var taxDocumentHTML = """
   </head>
     <body>
         <style>
-            .abound-tax-documents-container {
+            .abound-tax-documents {
                 width: auto;
             }
             input, select{
