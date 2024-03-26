@@ -30,48 +30,16 @@ var taxProfileHTML = """
       }
     </script>
     <script type="module">
-      import Abound from "https://js.withabound.com/latest/abound-client-sdk.js";
-      // debug mode
-      %@
-      // Access Token
-      const abound = new Abound({
-        accessToken: "%@",
-      });
+      import { renderW9Collection } from "https://js.withabound.com/latest-v2-minor/abound-client-sdk.js";
       // Theme
       %@
       // Custom Content
       %@
-      function onSuccessOrError (){
-                      if(debugMode){
-                          const eins = document.getElementsByName("ein")
-                          if(eins.length>0){
-                              const ein = eins[0].value.replace("-","");
-                              switch(ein){
-                                  case "999999999":
-                                      onError("unverified");
-                                  break;
-                                  case "333333333":
-                                      onError("mismatch");
-                                  break;
-                                  case "111111111":
-                                      onError("error");
-                                  break;
-                                  case "555555555":
-                                      onError("lockedOut");
-                                  break;
-                                  default:
-                                      onSuccess();
-                              }
-                          }
-                      }else{
-                          onSuccess();
-                      }
-                    
-                  }
-      abound.renderTaxProfile({
+      renderW9Collection({
+        accessToken: "%@",
         targetId: "abound-ui-wrapper",
         theme: customTheme,
-        onSubmitSuccess: onSuccessOrError,
+        onSubmitSuccess: onSuccess,
         onSubmitError: onError,
         content: customContent,
       });
@@ -105,19 +73,14 @@ var taxDocumentHTML = """
       }
     </script>
         <script type="module">
-            import Abound from "https://js.withabound.com/latest/abound-client-sdk.js";
-            // debug mode
-            %@
-            // Access Token
-            const abound = new Abound({
-                accessToken: "%@",
-            });
+            import { renderTaxDocuments } from "https://js.withabound.com/latest-v2-minor/abound-client-sdk.js";
             // Theme
             %@
             // Custom Content
             %@
             //Year
-            abound.renderTaxDocuments({
+            renderTaxDocuments({
+               accessToken: "%@",
                year: "%@",
                targetId: "abound-ui-wrapper",
                theme: customTheme,

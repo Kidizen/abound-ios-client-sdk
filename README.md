@@ -1,13 +1,12 @@
-
 # Abound Client SDK
 
 The Abound Client SDK provides convenient access to embeddable UI components powered by [Abound's API](https://docs.withabound.com/) .
 
-## Requirements 
+## Requirements
 
-- iOS 13.
-- Swift 5.5+
-- Xcode 13.0+
+-   iOS 13.
+-   Swift 5.5+
+-   Xcode 13.0+
 
 ## Installation
 
@@ -15,7 +14,7 @@ The preferred way of installing the Abound iOS Client SDK is via the [Swift Pack
 
 1. In Xcode, open your project and navigate to **File** → **Swift Packages** → **Add Package Dependency...**
 2. Paste the repository URL (`https://github.com/withabound/abound-ios-client-sdk/`) and click **Next**.
-3. For **Rules**, select **Branch** (with branch set to `master`).
+3. For **Rules**, select **Branch** (with branch set to `main`).
 4. Click **Finish**.
 5. Open the Project settings, add **SwiftUI.framework** to the **Linked Frameworks and Libraries**, set **Status** to **Optional**.
 
@@ -26,7 +25,9 @@ The preferred way of installing the Abound iOS Client SDK is via the [Swift Pack
 You can start to integrate the Abound Client SDK library into your solution as soon as you [create an account with Abound][developer-dashboard-signup], [obtain your API keys][developer-dashboard-keys], and create an access token.
 
 ### Usage
+
 First we need to import the Abound namespace
+
 ```swift
 import Abound
 ```
@@ -34,17 +35,17 @@ import Abound
 The Abound client must be configured with an `accessToken` requested from the [Abound API](https://docs.withabound.com/reference/createaccesstoken).
 
 ```swift
-Abound.accessToken = "accessToken_testeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcHBfaWQiOiJhcHBJZF90ZXN0NDhlN2VhYTMxNzVhNjYzNTRlMDA2MjY1NDJkMiIsImNyZWF0ZWRfdGltZXN0YW1wIjoxNjU1MDk2NDAwMDAwLCJlbnZpcm9ubWVudCI6Imh0dHBzOi8vc2FuZGJveC1hcGkud2l0aGFib3VuZC5jb20vdjIiLCJleHBpcmF0aW9uX3RpbWVzdGFtcCI6MzI1MDM3MDE2MDAwMDAsInN0YXR1cyI6IkFjdGl2ZSIsInVzZXJfaWQiOiJ1c2VySWRfdGVzdDI0YjA1ZDc2MWZmNThiNTkzMWJkMDc3NzhjNjdiNGU4MThlNCIsImlhdCI6MTY1NTEzMDMxM30.dOUIyxTRV0QDmrFiy-GoyhKc8qru3pymIcPS5cGTaNk"
+Abound.accessToken = "accessToken_sampleeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2OTY5ODczNTcsImV4cCI6MTY5Njk4NzY1NywiYXVkIjoiYXBwSWRfc2FtcGxlcU5oVmNkWVFZVSIsImlzcyI6Imh0dHBzOi8vc2FuZGJveC1hcGkud2l0aGFib3VuZC5jb20vdjQiLCJzdWIiOiJ1c2VySWRfc2FtcGxlWEdNRm5oT3BlUiJ9.-NrPVQvsnM8vJouyuP5yeFGlYb1xGgR-gS3v87p5BQk"
 ```
 
-Then we can show the [Tax Profile](https://docs.withabound.com/docs/adding-a-tax-profile-drop-in-to-your-app)
+Then we can show the [Tax Profile](https://docs.withabound.com/docs/tax-profile-drop-in-w-9-substitute)
 
 ```swift
 TaxProfile()
 ```
 
-we can also add Custom Text Content for Tax Profile , for specific states.
-Currently you can set the values for 
+We can also add Custom Text Content for Tax Profile, for specific states.
+Currently you can set the values for
 
 submitButton (Defaults to 'Submit')
 loadingButton (Defaults to 'Loading...')
@@ -60,26 +61,13 @@ errorMessage (Defaults to 'Invalid')
     );
 ```
 
-or a [Tax  Document](https://docs.withabound.com/docs/adding-a-tax-documents-drop-in-to-your-app)
-
-### Debug Mode
-
-You can pass a parameter called debug, that allows to test specific states when passing an EIN/TIN value
-
-| Status     | Description                                                       | Testing Value |
-|------------|-------------------------------------------------------------------|---------------|
-| unverified | Unverified                                                        | 999999999     |
-| mismatch   | TIN and name do not match.                                        | 333333333     |
-| error      | This is a system-failure error and should rarely, if ever, occur. | 111111111     |
-| lockedOut  | Verification for user locked for 24-hours.                        | 555555555     |
-
-        
+or a [Tax Document](https://docs.withabound.com/docs/tax-documents-drop-in)
 
 ```swift
 TaxDocuments(year: '2022')
 ```
 
-Some properties for the design can be changed used [custom themes](https://docs.withabound.com/docs/custom-theming-for-drop-in-components), that can be passed as optional parameters for the TaxDocument / TaxProfile
+Some properties for the design can be changed used [custom themes](https://docs.withabound.com/docs/white-label-theming), that can be passed as optional parameters for the TaxDocument / TaxProfile
 
 ```swift
 AboundTheme(
@@ -89,7 +77,6 @@ AboundTheme(
     button: AboundThemeButton(colorActiveBackground: "#655BEF")
 )
 ```
-
 
 [docs]: https://docs.withabound.com
 [developer-dashboard]: https://dashboard.withabound.com
