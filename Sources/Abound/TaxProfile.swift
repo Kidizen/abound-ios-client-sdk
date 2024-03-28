@@ -36,6 +36,7 @@ public struct TaxProfile: View {
             accessToken: Abound.accessToken,
             theme: theme,
             customContent: customContent,
+            year: "",
             onSuccess: self.onSuccess,
             onError: self.onError,
             debug:debug

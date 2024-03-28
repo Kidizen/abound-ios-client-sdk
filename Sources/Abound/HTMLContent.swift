@@ -14,7 +14,7 @@ var taxProfileHTML = """
   <body>
     <div id="abound-ui-wrapper"></div>
     <style>
-      .abound-tax-profile {
+      .abound-w9-collection {
         width: auto;
       }
       input, select{

@@ -13,7 +13,7 @@ import SwiftUI
 public struct TaxDocument: View {
   
     var theme: AboundTheme
-    var year: String
+    public private(set) var year: String
     var debug: Bool
     var onSuccess: (() -> Void)? = nil
     var onError: ((TaxError) -> Void)? = nil
